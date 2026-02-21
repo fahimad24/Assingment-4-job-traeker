@@ -96,3 +96,7 @@ const jobCards = [
     buttons: ["Interview", "Rejected"]
   }
 ];
+
+
+const interviewCards = [];
+const rejectedCards = [];
