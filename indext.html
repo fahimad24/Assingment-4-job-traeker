@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Tracker | Find Your Dream Job</title>
+    <!-- Tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-[#F8FAFC]">
+    <section class="max-w-6xl mx-auto mt-30">
+      <div>
+        <h1 class="text-5xl font-bold">Job Application Tracker</h1>
+        <div class="grid grid-cols-3 gap-4 mt-8">
+          <div class="bg-white border-2 border-gray-100 p-5 rounded space-y-4">
+            <p class="text-lg font-semibold">Total</p>
+            <p id="total-count" class="text-slate-900 font-bold">0</p>
+          </div>
+          <div class="bg-white border-2 border-gray-100 p-5 rounded space-y-4">
+            <p class="text-lg font-semibold">Interview</p>
+            <p id="interview-count" class="text-green-600 font-bold">0</p>
+          </div>
+          <div class="bg-white border-2 border-gray-100 p-5 rounded space-y-4">
+            <p class="text-lg font-semibold">Rejected</p>
+            <p id="rejected-count" class="text-red-600 font-bold">0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
