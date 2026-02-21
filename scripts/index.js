@@ -1,100 +1,61 @@
-const jobCards = [
-  {
-    id: 1,
-    companyName: "Mobile First Corp",
-    position: "React Native Developer",
-    location: "Remote",
-    type: "Full-time",
-    salary: "$130,000 - $175,000",
-    status: "Not Applied",
-    description:
-      "Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.",
-    buttons: ["Interview", "Rejected"]
-  },
-  {
-    id: 2,
-    companyName: "TechWave Solutions",
-    position: "Frontend Engineer",
-    location: "Dhaka, Bangladesh",
-    type: "Full-time",
-    salary: "$40,000 - $60,000",
-    status: "Not Applied",
-    description:
-      "Develop responsive web applications using React and modern JavaScript frameworks.",
-    buttons: ["Interview", "Rejected"]
-  },
-  {
-    id: 3,
-    companyName: "CloudSync Ltd",
-    position: "Backend Developer",
-    location: "Remote",
-    type: "Contract",
-    salary: "$90,000 - $120,000",
-    status: "Not Applied",
-    description:
-      "Design and maintain scalable APIs using Node.js and Express.",
-    buttons: ["Interview", "Rejected"]
-  },
-  {
-    id: 4,
-    companyName: "NextGen Apps",
-    position: "Full Stack Developer",
-    location: "Chattogram, Bangladesh",
-    type: "Full-time",
-    salary: "$70,000 - $100,000",
-    status: "Not Applied",
-    description:
-      "Work on both frontend and backend systems using MERN stack technologies.",
-    buttons: ["Interview", "Rejected"]
-  },
-  {
-    id: 5,
-    companyName: "PixelCraft Studio",
-    position: "UI/UX Designer",
-    location: "Remote",
-    type: "Part-time",
-    salary: "$50,000 - $75,000",
-    status: "Not Applied",
-    description:
-      "Create user-centered designs and interactive prototypes for web and mobile apps.",
-    buttons: ["Interview", "Rejected"]
-  },
-  {
-    id: 6,
-    companyName: "DevCore Systems",
-    position: "DevOps Engineer",
-    location: "Sylhet, Bangladesh",
-    type: "Full-time",
-    salary: "$100,000 - $140,000",
-    status: "Not Applied",
-    description:
-      "Manage CI/CD pipelines and cloud infrastructure using AWS and Docker.",
-    buttons: ["Interview", "Rejected"]
-  },
-  {
-    id: 7,
-    companyName: "InnovaTech Global",
-    position: "Mobile App Developer",
-    location: "Remote",
-    type: "Full-time",
-    salary: "$85,000 - $110,000",
-    status: "Not Applied",
-    description:
-      "Develop and maintain high-performance mobile applications for Android and iOS.",
-    buttons: ["Interview", "Rejected"]
-  },
-  {
-    id: 8,
-    companyName: "Bright Future IT",
-    position: "Junior Web Developer",
-    location: "Khulna, Bangladesh",
-    type: "Internship",
-    salary: "$20,000 - $30,000",
-    status: "Not Applied",
-    description:
-      "Assist senior developers in building modern websites using HTML, CSS, and JavaScript.",
-    buttons: ["Interview", "Rejected"]
-  }
-];
+getElementId("total-count-dash").innerText = jobCards.length;
+getElementId("job-count").innerText = jobCards.length;
 
-export default jobCards;
+const jobListBtn = getElementId("all-jobs-list");
+jobListBtn.addEventListener("click", function () {
+  console.log("All jobs button clicked");
+  const jobListContainer = getElementId("job-list-container");
+  renderJobList();
+});
+
+
+// Render job cards to the DOM
+function renderJobList() {
+    const jobListContainer = getElementId("job-list-container");
+  jobListContainer.innerHTML = "";
+    jobCards.map((job) => {
+      jobListContainer.innerHTML += `
+        <div
+            class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
+          >
+            <div
+              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
+            >
+              <img src="./assets/Vector.png" alt="Delete" />
+            </div>
+            <div>
+              <h1 class="text-2xl font-semibold">${job.companyName}</h1>
+              <p class="text-lg text-gray-500">${job.position}</p>
+            </div>
+            <ul
+              id="job-facilities"
+              class="flex gap-3 text-base text-gray-600 my-3"
+            >
+              <p class="pr-5">${job.remote}</p>
+              <li class="pr-5">${job.type}</li>
+              <li>${job.salary}</li>
+            </ul>
+            <div class="mt-5">
+              <button
+                class="btn btn-md uppercase bg-gray-300 cursor-pointer text-gray-600 border-gray-300"
+                disabled
+              >
+                Not Applied
+              </button>
+            </div>
+            <p>
+              ${job.description}
+            </p>
+            <div>
+              <button class="btn btn-outline btn-success uppercase">
+                ${job.buttons[0]}
+              </button>
+              <button class="btn btn-outline btn-error uppercase">
+                ${job.buttons[1]}
+              </button>
+            </div>
+          </div> `;
+    });
+}
+
+renderJobList();

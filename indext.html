@@ -25,13 +25,14 @@
     </style>
   </head>
   <body class="bg-[#F8FAFC]">
+    <!-- dashboard -->
     <section class="max-w-6xl mx-auto pt-30">
       <div>
         <h1 class="text-5xl font-bold">Job Application Tracker</h1>
         <div class="grid grid-cols-3 gap-4 mt-8">
           <div class="bg-white border-2 border-gray-100 p-5 rounded space-y-4">
             <p class="text-lg font-semibold">Total</p>
-            <p id="total-count" class="text-slate-900 font-bold">0</p>
+            <p id="total-count-dash" class="text-slate-900 font-bold">0</p>
           </div>
           <div class="bg-white border-2 border-gray-100 p-5 rounded space-y-4">
             <p class="text-lg font-semibold">Interview</p>
@@ -47,11 +48,15 @@
     </section>
 
     <!-- Job listed -->
-    <section class="max-w-6xl mx-auto mt-">
+    <section class="max-w-6xl mx-auto">
       <div class="py-8">
-        <h1 class="text-3xl font-bold">Available Jobs</h1>
+        <div class="flex items-center justify-between">
+          <h1 class="text-3xl font-bold">Available Jobs</h1>
+          <p><span id="job-count">0</span> Jobs</p>
+        </div>
         <div class="flex items-center gap-4 mt-8">
           <button
+            id="all-jobs-list"
             class="w-30 h-10 rounded text-white cursor-pointer btn btn-info border border-gray-400"
           >
             All
@@ -68,7 +73,7 @@
           </button>
         </div>
 
-        <div id="job-list" class="mt-8">
+        <div id="job-list-container" class="mt-8 space-y-8">
           <!-- Job cards will be dynamically inserted here -->
           <div id="no-job-availabel" class="hidden">
             <div
@@ -85,50 +90,11 @@
               </div>
             </div>
           </div>
-          <div
-            class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
-          >
-            <div
-              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
-            >
-              <img src="./assets/Vector.png" alt="Delete" />
-            </div>
-            <div>
-              <h1 class="text-2xl font-semibold">TechNova Solutions</h1>
-              <p class="text-lg text-gray-500">Frontend Developer</p>
-            </div>
-            <ul
-              id="job-facilities"
-              class="flex gap-3 text-base text-gray-600 my-3"
-            >
-              <p class="pr-5">Remote</p>
-              <li class="pr-5">Full-time</li>
-              <li>$40,000 - $60,000</li>
-            </ul>
-            <div class="mt-5">
-              <button
-                class="btn btn-md uppercase bg-gray-300 cursor-pointer text-gray-600 border-gray-300"
-                disabled
-              >
-                Not Applied
-              </button>
-            </div>
-            <p>
-              Build cross-platform mobile applications using React Native. Work
-              on products used by millions of users worldwide.
-            </p>
-            <div>
-              <button class="btn btn-outline btn-success uppercase">
-                Interview
-              </button>
-              <button class="btn btn-outline btn-error uppercase">
-                Rejected
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
+    <script src="./scripts/jobList.js"></script>
+    <script src="./scripts/utils/getElement.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
