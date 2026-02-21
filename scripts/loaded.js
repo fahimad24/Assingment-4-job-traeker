@@ -24,6 +24,7 @@ function renderJobList() {
     jobCards.map((job) => {
         jobListContainer.innerHTML += `
         <div
+            id="job-card-${job.id}"
             class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
           >
             <button
@@ -46,6 +47,7 @@ function renderJobList() {
             </ul>
             <div class="mt-5">
               <button
+              id="enable-btn-${job.id}"
                 class="btn btn-md uppercase bg-gray-300 cursor-pointer text-gray-600 border-gray-300"
                 disabled
               >
@@ -93,9 +95,10 @@ function renderInterviewList() {
     interviewCards.map((job) => {
         interviewContainer.innerHTML += `
         <div
-            class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
+            class="bg-white border-2 border-l-4 border-gray-100 p-8 rounded-lg space-y-8 relative border-l-green-600"
           >
             <button
+            onclick="deleteJob(${job.id})"
               class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
             >
               <img src="./assets/Vector.png" alt="Delete" />
@@ -114,10 +117,10 @@ function renderInterviewList() {
             </ul>
             <div class="mt-5">
               <button
-                class="btn btn-md uppercase bg-gray-300 cursor-pointer text-gray-600 border-gray-300"
-                disabled
+                class="btn btn-md uppercase bg-green-300/15 cursor-pointer text-green-600 border-gray-300"
+                
               >
-                Not Applied
+                Interview
               </button>
             </div>
             <p>
@@ -162,9 +165,10 @@ function renderRejectedList() {
     rejectedCards.map((job) => {
         rejectedContainer.innerHTML += `
         <div
-            class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
+            class="bg-white border-2 border-l-4 border-gray-100 p-8 rounded-lg space-y-8 relative border-l-red-600"
           >
             <button
+            onclick="deleteJob(${job.id})"
               class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
             >
               <img src="./assets/Vector.png" alt="Delete" />
@@ -183,10 +187,10 @@ function renderRejectedList() {
             </ul>
             <div class="mt-5">
               <button
-                class="btn btn-md uppercase bg-gray-300 cursor-pointer text-gray-600 border-gray-300"
+                class="btn btn-md uppercase bg-red-300/15 cursor-pointer text-red-600 border-gray-300"
                 disabled
               >
-                Not Applied
+                Rejected
               </button>
             </div>
             <p>

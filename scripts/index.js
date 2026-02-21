@@ -44,7 +44,7 @@ jobListBtn.addEventListener("click", function () {
     setActiveFilterButton(jobListBtn);
     jobCountElement.innerText = jobCards.length;
     setHiddenContainers(jobListContainer);
-    renderJobList();
+
 });
 // Add interview button event listener
 interviewBtn.addEventListener("click", function () {
@@ -80,9 +80,23 @@ function addToInterviewList(id) {
 
     }
     interviewCards.push(job);
-    alert("Job added to the interview list.");
     interviewCountElement.innerText = interviewCards.length;
     rejectedCountElement.innerText = rejectedCards.length;
+    jobCountElement.innerText = rejectedCards.length;
+
+    const jobCard = getElementId(`job-card-${job.id}`);
+    const enableBtn = getElementId(`enable-btn-${job.id}`);
+    jobCard.classList.add("border-l-4", "border-l-green-600");
+    jobCard.classList.remove("border-l-red-600");
+    console.log(enableBtn, jobCards);
+    enableBtn.innerText = "Interview";
+    enableBtn.disabled = false;
+    enableBtn.classList.remove("bg-gray-300", "text-gray-600", "bg-red-300/15", "text-red-600");
+    enableBtn.classList.add("bg-green-300/15", "text-green-600");
+    alert("Job added to the interview list.");
+
+
+
     renderInterviewList();
     renderRejectedList();
 }
@@ -103,9 +117,21 @@ function addToRejectedList(id) {
 
     }
     rejectedCards.push(job);
-    alert("Job added to the rejected list.");
     rejectedCountElement.innerText = rejectedCards.length;
     interviewCountElement.innerText = interviewCards.length;
+    jobCountElement.innerText = interviewCards.length;
+
+    const jobCard = getElementId(`job-card-${job.id}`);
+    const enableBtn = getElementId(`enable-btn-${job.id}`);
+    jobCard.classList.add("border-l-4", "border-l-red-600");
+    jobCard.classList.remove("border-l-green-600");
+    enableBtn.innerText = "Rejected";
+    enableBtn.disabled = false;
+    enableBtn.classList.remove("bg-gray-300", "text-gray-600", "bg-green-300/15", "text-green-600");
+    enableBtn.classList.add("bg-red-300/15", "text-red-600");
+    alert("Job added to the rejected list.");
+
+
     renderRejectedList();
     renderInterviewList();
 }
@@ -119,7 +145,16 @@ function deleteJob(id) {
     totalJobCount.innerText = jobCards.length;
     interviewCountElement.innerText = interviewCards.length;
     rejectedCountElement.innerText = rejectedCards.length;
-    jobCountElement.innerText = jobCards.length;
+    if (!interviewContainer.classList.contains("hidden")) {
+        jobCountElement.innerText = interviewCards.length;
+
+    } else if (!rejectedContainer.classList.contains("hidden")) {
+        jobCountElement.innerText = rejectedCards.length;
+
+    } else {
+        jobCountElement.innerText = jobCards.length;
+
+    }
     renderJobList();
     renderInterviewList();
     renderRejectedList();
