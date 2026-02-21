@@ -26,11 +26,12 @@ function renderJobList() {
         <div
             class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
           >
-            <div
+            <button
+            onclick="deleteJob(${job.id})"
               class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
             >
               <img src="./assets/Vector.png" alt="Delete" />
-            </div>
+            </button>
             <div>
               <h1 class="text-2xl font-semibold">${job.companyName}</h1>
               <p class="text-lg text-gray-500">${job.position}</p>
@@ -39,7 +40,7 @@ function renderJobList() {
               id="job-facilities"
               class="flex gap-3 text-base text-gray-600 my-3"
             >
-              <p class="pr-5">${job.remote}</p>
+              <p class="pr-5">${job.location}</p>
               <li class="pr-5">${job.type}</li>
               <li>${job.salary}</li>
             </ul>
@@ -55,11 +56,11 @@ function renderJobList() {
               ${job.description}
             </p>
             <div>
-              <button id="interview-btn-${job.id}" class="btn btn-outline btn-success uppercase">
-                ${job.buttons[0]}
+              <button onclick="addToInterviewList(${job.id})" class="btn btn-outline btn-success uppercase">
+                interview
               </button>
-              <button id="reject-btn-${job.id}" class="btn btn-outline btn-error uppercase">
-                ${job.buttons[1]}
+              <button onclick="addToRejectedList(${job.id})" class="btn btn-outline btn-error uppercase">
+                Rejected
               </button>
             </div>
           </div> `;
@@ -68,9 +69,9 @@ function renderJobList() {
 // Render interview cards to the DOM
 function renderInterviewList() {
 
-    jobListContainer.innerHTML = "";
+    interviewContainer.innerHTML = "";
     if (interviewCards.length === 0) {
-        jobListContainer.innerHTML = `
+        interviewContainer.innerHTML = `
     <div id="no-job-availabel" class="">
             <div
               class="bg-white border-2 border-gray-100 p-8 py-20 rounded-lg space-y-8 flex flex-col items-center justify-center h-84"
@@ -90,15 +91,15 @@ function renderInterviewList() {
     }
 
     interviewCards.map((job) => {
-        jobListContainer.innerHTML += `
+        interviewContainer.innerHTML += `
         <div
             class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
           >
-            <div
+            <button
               class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
             >
               <img src="./assets/Vector.png" alt="Delete" />
-            </div>
+            </button>
             <div>
               <h1 class="text-2xl font-semibold">${job.companyName}</h1>
               <p class="text-lg text-gray-500">${job.position}</p>
@@ -107,7 +108,7 @@ function renderInterviewList() {
               id="job-facilities"
               class="flex gap-3 text-base text-gray-600 my-3"
             >
-              <p class="pr-5">${job.remote}</p>
+              <p class="pr-5">${job.location}</p>
               <li class="pr-5">${job.type}</li>
               <li>${job.salary}</li>
             </ul>
@@ -123,11 +124,11 @@ function renderInterviewList() {
               ${job.description}
             </p>
             <div>
-              <button id="interview-btn-${job.id}" class="btn btn-outline btn-success uppercase">
-                ${job.buttons[0]}
+              <button onclick="addToInterviewList(${job.id})" class="btn btn-outline btn-success uppercase">
+                Interview
               </button>
-              <button id="reject-btn-${job.id}" class="btn btn-outline btn-error uppercase">
-                ${job.buttons[1]}
+              <button onclick="addToRejectedList(${job.id})" class="btn btn-outline btn-error uppercase">
+                Rejected
               </button>
             </div>
           </div> `;
@@ -137,9 +138,9 @@ function renderInterviewList() {
 // Render rejected cards to the DOM
 function renderRejectedList() {
 
-    jobListContainer.innerHTML = "";
+    rejectedContainer.innerHTML = "";
     if (rejectedCards.length === 0) {
-        jobListContainer.innerHTML = `
+        rejectedContainer.innerHTML = `
     <div id="no-job-availabel" class="">
             <div
               class="bg-white border-2 border-gray-100 p-8 py-20 rounded-lg space-y-8 flex flex-col items-center justify-center h-84"
@@ -159,15 +160,15 @@ function renderRejectedList() {
     }
 
     rejectedCards.map((job) => {
-        jobListContainer.innerHTML += `
+        rejectedContainer.innerHTML += `
         <div
             class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
           >
-            <div
+            <button
               class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
             >
               <img src="./assets/Vector.png" alt="Delete" />
-            </div>
+            </button>
             <div>
               <h1 class="text-2xl font-semibold">${job.companyName}</h1>
               <p class="text-lg text-gray-500">${job.position}</p>
@@ -176,7 +177,7 @@ function renderRejectedList() {
               id="job-facilities"
               class="flex gap-3 text-base text-gray-600 my-3"
             >
-              <p class="pr-5">${job.remote}</p>
+              <p class="pr-5">${job.location}</p>
               <li class="pr-5">${job.type}</li>
               <li>${job.salary}</li>
             </ul>
@@ -192,11 +193,11 @@ function renderRejectedList() {
               ${job.description}
             </p>
             <div>
-              <button id="interview-btn-${job.id}" class="btn btn-outline btn-success uppercase">
-                ${job.buttons[0]}
+              <button onclick="addToInterviewList(${job.id})" class="btn btn-outline btn-success uppercase">
+                Interview
               </button>
-              <button id="reject-btn-${job.id}" class="btn btn-outline btn-error uppercase">
-                ${job.buttons[1]}
+              <button onclick="addToRejectedList(${job.id})" class="btn btn-outline btn-error uppercase">
+                Rejected
               </button>
             </div>
           </div> `;

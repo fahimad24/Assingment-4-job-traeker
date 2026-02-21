@@ -2,9 +2,18 @@ const totalJobCount = getElementId("total-count-dash");
 totalJobCount.innerText = jobCards.length;
 const jobCountElement = getElementId("job-count");
 jobCountElement.innerText = jobCards.length;
+const interviewCountElement = getElementId("interview-count");
+interviewCountElement.innerText = interviewCards.length;
+const rejectedCountElement = getElementId("rejected-count");
+rejectedCountElement.innerText = rejectedCards.length;
+
 
 
 const jobListContainer = getElementId("job-list-container");
+const interviewContainer = getElementId("interview-container");
+const rejectedContainer = getElementId("rejected-container");
+
+
 const jobListBtn = getElementId("all-jobs-list");
 const interviewBtn = getElementId("interview-job-list");
 const rejectedBtn = getElementId("rejected-job-list");
@@ -21,22 +30,34 @@ function setActiveFilterButton(activeButton) {
     activeButton.classList.remove("bg-white", "text-gray-400");
 }
 
+const filterContainer = [jobListContainer, interviewContainer, rejectedContainer];
+
+function setHiddenContainers(activeContainer) {
+    filterContainer.forEach((container) => {
+        container.classList.add("hidden");
+    });
+    activeContainer.classList.remove("hidden");
+}
+
 //  Add All job List button event listener
 jobListBtn.addEventListener("click", function () {
     setActiveFilterButton(jobListBtn);
     jobCountElement.innerText = jobCards.length;
+    setHiddenContainers(jobListContainer);
     renderJobList();
 });
 // Add interview button event listener
 interviewBtn.addEventListener("click", function () {
     setActiveFilterButton(interviewBtn);
     jobCountElement.innerText = interviewCards.length;
+    setHiddenContainers(interviewContainer);
     renderInterviewList();
 });
 // Add rejected button event listener
 rejectedBtn.addEventListener("click", function () {
     setActiveFilterButton(rejectedBtn);
     jobCountElement.innerText = rejectedCards.length;
+    setHiddenContainers(rejectedContainer);
     renderRejectedList();
 });
 
@@ -44,8 +65,62 @@ rejectedBtn.addEventListener("click", function () {
 renderJobList();
 
 
+// Add interview Apply List
+
+function addToInterviewList(id) {
+    const job = jobCards.find(job => job.id === id);
+
+    rejectedCards = rejectedCards.filter((rejectedJob) => rejectedJob.id !== job.id);
+
+    for (let i of interviewCards) {
+        if (i.id === job.id) {
+            alert("This job is already in the interview list.");
+            return;
+        }
+
+    }
+    interviewCards.push(job);
+    alert("Job added to the interview list.");
+    interviewCountElement.innerText = interviewCards.length;
+    rejectedCountElement.innerText = rejectedCards.length;
+    renderInterviewList();
+    renderRejectedList();
+}
+
+// Add rejected List
+function addToRejectedList(id) {
+    const job = jobCards.find(job => job.id === id);
 
 
+    interviewCards = interviewCards.filter((interviewJob) => interviewJob.id !== job.id);
 
 
+    for (let i of rejectedCards) {
+        if (i.id === job.id) {
+            alert("This job is already in the rejected list.");
+            return;
+        }
 
+    }
+    rejectedCards.push(job);
+    alert("Job added to the rejected list.");
+    rejectedCountElement.innerText = rejectedCards.length;
+    interviewCountElement.innerText = interviewCards.length;
+    renderRejectedList();
+    renderInterviewList();
+}
+
+// Delete job from the list
+function deleteJob(id) {
+    jobCards = jobCards.filter((job) => job.id !== id);
+    interviewCards = interviewCards.filter((job) => job.id !== id);
+    rejectedCards = rejectedCards.filter((job) => job.id !== id);
+    alert("Job deleted successfully.");
+    totalJobCount.innerText = jobCards.length;
+    interviewCountElement.innerText = interviewCards.length;
+    rejectedCountElement.innerText = rejectedCards.length;
+    jobCountElement.innerText = jobCards.length;
+    renderJobList();
+    renderInterviewList();
+    renderRejectedList();
+}
