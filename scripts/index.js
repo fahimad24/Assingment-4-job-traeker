@@ -49,14 +49,14 @@ jobListBtn.addEventListener("click", function () {
 // Add interview button event listener
 interviewBtn.addEventListener("click", function () {
     setActiveFilterButton(interviewBtn);
-    jobCountElement.innerText = interviewCards.length;
+    jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
     setHiddenContainers(interviewContainer);
     renderInterviewList();
 });
 // Add rejected button event listener
 rejectedBtn.addEventListener("click", function () {
     setActiveFilterButton(rejectedBtn);
-    jobCountElement.innerText = rejectedCards.length;
+    jobCountElement.innerText = rejectedCards.length + " of " + jobCards.length;
     setHiddenContainers(rejectedContainer);
     renderRejectedList();
 });
@@ -82,7 +82,7 @@ function addToInterviewList(id) {
     interviewCards.push(job);
     interviewCountElement.innerText = interviewCards.length;
     rejectedCountElement.innerText = rejectedCards.length;
-    jobCountElement.innerText = rejectedCards.length;
+    jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
 
     const jobCard = getElementId(`job-card-${job.id}`);
     const enableBtn = getElementId(`enable-btn-${job.id}`);
@@ -119,7 +119,7 @@ function addToRejectedList(id) {
     rejectedCards.push(job);
     rejectedCountElement.innerText = rejectedCards.length;
     interviewCountElement.innerText = interviewCards.length;
-    jobCountElement.innerText = interviewCards.length;
+    jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
 
     const jobCard = getElementId(`job-card-${job.id}`);
     const enableBtn = getElementId(`enable-btn-${job.id}`);
@@ -146,10 +146,10 @@ function deleteJob(id) {
     interviewCountElement.innerText = interviewCards.length;
     rejectedCountElement.innerText = rejectedCards.length;
     if (!interviewContainer.classList.contains("hidden")) {
-        jobCountElement.innerText = interviewCards.length;
+        jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
 
     } else if (!rejectedContainer.classList.contains("hidden")) {
-        jobCountElement.innerText = rejectedCards.length;
+        jobCountElement.innerText = rejectedCards.length + " of " + jobCards.length;
 
     } else {
         jobCountElement.innerText = jobCards.length;
