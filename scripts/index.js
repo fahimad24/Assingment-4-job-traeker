@@ -82,13 +82,18 @@ function addToInterviewList(id) {
     interviewCards.push(job);
     interviewCountElement.innerText = interviewCards.length;
     rejectedCountElement.innerText = rejectedCards.length;
-    jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
+    if (!interviewContainer.classList.contains("hidden")) {
+        jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
+    } else if (!rejectedContainer.classList.contains("hidden")) {
+        jobCountElement.innerText = rejectedCards.length + " of " + jobCards.length;
+    } else {
+        jobCountElement.innerText = jobCards.length;
+    }
 
     const jobCard = getElementId(`job-card-${job.id}`);
     const enableBtn = getElementId(`enable-btn-${job.id}`);
     jobCard.classList.add("border-l-4", "border-l-green-600");
     jobCard.classList.remove("border-l-red-600");
-    console.log(enableBtn, jobCards);
     enableBtn.innerText = "Interview";
     enableBtn.disabled = false;
     enableBtn.classList.remove("bg-gray-300", "text-gray-600", "bg-red-300/15", "text-red-600");
@@ -119,7 +124,14 @@ function addToRejectedList(id) {
     rejectedCards.push(job);
     rejectedCountElement.innerText = rejectedCards.length;
     interviewCountElement.innerText = interviewCards.length;
-    jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
+    if (!rejectedContainer.classList.contains("hidden")) {
+        jobCountElement.innerText = rejectedCards.length + " of " + jobCards.length;
+    } else if (!interviewContainer.classList.contains("hidden")) {
+        jobCountElement.innerText = interviewCards.length + " of " + jobCards.length;
+    } else {
+        jobCountElement.innerText = jobCards.length;
+    }
+
 
     const jobCard = getElementId(`job-card-${job.id}`);
     const enableBtn = getElementId(`enable-btn-${job.id}`);
