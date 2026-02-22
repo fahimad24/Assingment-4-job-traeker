@@ -37,9 +37,9 @@ function renderJobList() {
           >
             <button
             onclick="deleteJob(${job.id})"
-              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
+              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer hover:text-white hover:bg-red-700 transition-all duration-200"
             >
-              <img src="./assets/Vector.png" alt="Delete" />
+              <i class="fa-regular fa-trash-can"></i>
             </button>
             <div>
               <h1 class="text-2xl font-semibold">${job.companyName}</h1>
@@ -106,9 +106,9 @@ function renderInterviewList() {
           >
             <button
             onclick="deleteJob(${job.id})"
-              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
+              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer hover:text-white hover:bg-red-700 transition-all duration-200"
             >
-              <img src="./assets/Vector.png" alt="Delete" />
+              <i class="fa-regular fa-trash-can"></i>
             </button>
             <div>
               <h1 class="text-2xl font-semibold">${job.companyName}</h1>
@@ -176,9 +176,9 @@ function renderRejectedList() {
           >
             <button
             onclick="deleteJob(${job.id})"
-              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"
+              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer transition-all duration-200 hover:text-white hover:bg-red-700"
             >
-              <img src="./assets/Vector.png" alt="Delete" />
+              <i class="fa-regular fa-trash-can"></i>
             </button>
             <div>
               <h1 class="text-2xl font-semibold">${job.companyName}</h1>
