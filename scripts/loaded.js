@@ -1,9 +1,9 @@
 
 // Render job cards to the DOM
 function renderJobList() {
-    jobListContainer.innerHTML = "";
-    if (jobCards.length === 0) {
-        jobListContainer.innerHTML = `
+  jobListContainer.innerHTML = "";
+  if (jobCards.length === 0) {
+    jobListContainer.innerHTML = `
     <div id="no-job-availabel" class="">
             <div
               class="bg-white border-2 border-gray-100 p-8 py-20 rounded-lg space-y-8 flex flex-col items-center justify-center h-84"
@@ -19,13 +19,13 @@ function renderJobList() {
               </div>
             </div>
           </div>`;
-        return;
-    }
-    jobCards.map((job) => {
-        jobListContainer.innerHTML += `
+    return;
+  }
+  jobCards.map((job) => {
+    jobListContainer.innerHTML += `
         <div
             id="job-card-${job.id}"
-            class="bg-white border-2 border-gray-100 p-8 rounded-lg space-y-8 relative"
+            class="bg-white border-2 border-gray-100 p-8 rounded-lg md:space-y-8 space-y-4 relative"
           >
             <button
             onclick="deleteJob(${job.id})"
@@ -37,14 +37,13 @@ function renderJobList() {
               <h1 class="text-2xl font-semibold">${job.companyName}</h1>
               <p class="text-lg text-gray-500">${job.position}</p>
             </div>
-            <ul
-              id="job-facilities"
-              class="flex gap-3 text-base text-gray-600 my-3"
-            >
-              <p class="pr-5">${job.location}</p>
-              <li class="pr-5">${job.type}</li>
-              <li>${job.salary}</li>
-            </ul>
+            <div class=" text-gray-500">
+            <span class="">${job.location}</span>
+            <span>•</span>
+              <span class="">${job.type}</span>
+              <span >•</span>
+              <span>${job.salary}</span>
+            </div>
             <div class="mt-5">
               <button
               id="enable-btn-${job.id}"
@@ -66,14 +65,14 @@ function renderJobList() {
               </button>
             </div>
           </div> `;
-    });
+  });
 }
 // Render interview cards to the DOM
 function renderInterviewList() {
 
-    interviewContainer.innerHTML = "";
-    if (interviewCards.length === 0) {
-        interviewContainer.innerHTML = `
+  interviewContainer.innerHTML = "";
+  if (interviewCards.length === 0) {
+    interviewContainer.innerHTML = `
     <div id="no-job-availabel" class="">
             <div
               class="bg-white border-2 border-gray-100 p-8 py-20 rounded-lg space-y-8 flex flex-col items-center justify-center h-84"
@@ -89,11 +88,11 @@ function renderInterviewList() {
               </div>
             </div>
           </div>`;
-        return;
-    }
+    return;
+  }
 
-    interviewCards.map((job) => {
-        interviewContainer.innerHTML += `
+  interviewCards.map((job) => {
+    interviewContainer.innerHTML += `
         <div
             class="bg-white border-2 border-l-4 border-gray-100 p-8 rounded-lg space-y-8 relative border-l-green-600"
           >
@@ -135,15 +134,15 @@ function renderInterviewList() {
               </button>
             </div>
           </div> `;
-    });
+  });
 }
 
 // Render rejected cards to the DOM
 function renderRejectedList() {
 
-    rejectedContainer.innerHTML = "";
-    if (rejectedCards.length === 0) {
-        rejectedContainer.innerHTML = `
+  rejectedContainer.innerHTML = "";
+  if (rejectedCards.length === 0) {
+    rejectedContainer.innerHTML = `
     <div id="no-job-availabel" class="">
             <div
               class="bg-white border-2 border-gray-100 p-8 py-20 rounded-lg space-y-8 flex flex-col items-center justify-center h-84"
@@ -159,11 +158,11 @@ function renderRejectedList() {
               </div>
             </div>
           </div>`;
-        return;
-    }
+    return;
+  }
 
-    rejectedCards.map((job) => {
-        rejectedContainer.innerHTML += `
+  rejectedCards.map((job) => {
+    rejectedContainer.innerHTML += `
         <div
             class="bg-white border-2 border-l-4 border-gray-100 p-8 rounded-lg space-y-8 relative border-l-red-600"
           >
@@ -205,5 +204,5 @@ function renderRejectedList() {
               </button>
             </div>
           </div> `;
-    });
+  });
 }

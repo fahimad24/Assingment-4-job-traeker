@@ -28,5 +28,5 @@ Ans:
 5. What is the difference between preventDefault() and stopPropagation() methods?
 
 Ans:
-preventDefault() = Stops default browser behavior.
-stopPropagation() = Stops event bubbling.
+• preventDefault() = Stops default browser behavior.
+• stopPropagation() = Stops event bubbling.
