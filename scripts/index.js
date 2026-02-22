@@ -68,7 +68,13 @@ renderJobList();
 // Add interview Apply List
 
 function addToInterviewList(id) {
-    const job = jobCards.find(job => job.id === id);
+    const job = jobCards.find(job => {
+        if (job.id === id) {
+            job.activeState = 'interview';
+            return true;
+        }
+        return false;
+    });
 
     rejectedCards = rejectedCards.filter((rejectedJob) => rejectedJob.id !== job.id);
 
@@ -89,26 +95,24 @@ function addToInterviewList(id) {
     } else {
         jobCountElement.innerText = jobCards.length;
     }
-
-    const jobCard = getElementId(`job-card-${job.id}`);
-    const enableBtn = getElementId(`enable-btn-${job.id}`);
-    jobCard.classList.add("border-l-4", "border-l-green-600");
-    jobCard.classList.remove("border-l-red-600");
-    enableBtn.innerText = "Interview";
-    enableBtn.disabled = false;
-    enableBtn.classList.remove("bg-gray-300", "text-gray-600", "bg-red-300/15", "text-red-600");
-    enableBtn.classList.add("bg-green-300/15", "text-green-600");
     alert("Job added to the interview list.");
 
 
 
     renderInterviewList();
     renderRejectedList();
+    renderJobList();
 }
 
 // Add rejected List
 function addToRejectedList(id) {
-    const job = jobCards.find(job => job.id === id);
+    const job = jobCards.find(job => {
+        if (job.id === id) {
+            job.activeState = 'rejected';
+            return true;
+        }
+        return false;
+    });
 
 
     interviewCards = interviewCards.filter((interviewJob) => interviewJob.id !== job.id);
@@ -133,23 +137,17 @@ function addToRejectedList(id) {
     }
 
 
-    const jobCard = getElementId(`job-card-${job.id}`);
-    const enableBtn = getElementId(`enable-btn-${job.id}`);
-    jobCard.classList.add("border-l-4", "border-l-red-600");
-    jobCard.classList.remove("border-l-green-600");
-    enableBtn.innerText = "Rejected";
-    enableBtn.disabled = false;
-    enableBtn.classList.remove("bg-gray-300", "text-gray-600", "bg-green-300/15", "text-green-600");
-    enableBtn.classList.add("bg-red-300/15", "text-red-600");
     alert("Job added to the rejected list.");
 
 
     renderRejectedList();
     renderInterviewList();
+    renderJobList();
 }
 
 // Delete job from the list
 function deleteJob(id) {
+
     jobCards = jobCards.filter((job) => job.id !== id);
     interviewCards = interviewCards.filter((job) => job.id !== id);
     rejectedCards = rejectedCards.filter((job) => job.id !== id);
@@ -170,4 +168,5 @@ function deleteJob(id) {
     renderJobList();
     renderInterviewList();
     renderRejectedList();
+    renderJobList();
 }

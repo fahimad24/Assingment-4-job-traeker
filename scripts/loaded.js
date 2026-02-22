@@ -1,6 +1,7 @@
 
 // Render job cards to the DOM
 function renderJobList() {
+  let activeJobcard;
   jobListContainer.innerHTML = "";
   if (jobCards.length === 0) {
     jobListContainer.innerHTML = `
@@ -22,10 +23,17 @@ function renderJobList() {
     return;
   }
   jobCards.map((job) => {
+    if (job?.activeState === "rejected") {
+      activeJobcard = "border-1 border-l-4 border-red-400 border-l-red-600 bg-red-50 ";
+    } else if (job?.activeState === "interview") {
+      activeJobcard = " border-1 border-green-400 border-l-4 border-l-green-600 bg-green-50";
+    } else {
+      activeJobcard = "border-2 border-l-4 border-gray-300 bg-white";
+    }
     jobListContainer.innerHTML += `
         <div
             id="job-card-${job.id}"
-            class="bg-white border-2 border-gray-100 p-8 rounded-lg md:space-y-8 space-y-4 relative"
+            class="${activeJobcard} p-8 rounded-lg md:space-y-8 space-y-4 relative"
           >
             <button
             onclick="deleteJob(${job.id})"
@@ -47,10 +55,10 @@ function renderJobList() {
             <div class="mt-5">
               <button
               id="enable-btn-${job.id}"
-                class="btn btn-md uppercase bg-gray-300 cursor-pointer text-gray-600 border-gray-300"
+                class="btn btn-md uppercase  cursor-pointer   ${job?.activeState === "interview" ? "bg-green-300/15 text-green-600 border-green-600" : job?.activeState === "rejected" ? "bg-red-300/15 text-red-600 border-red-600" : " bg-gray-300 border-gray-300 text-gray-600"}"
                 disabled
               >
-                Not Applied
+                ${job?.activeState || "Not Applied"}
               </button>
             </div>
             <p>
@@ -94,7 +102,7 @@ function renderInterviewList() {
   interviewCards.map((job) => {
     interviewContainer.innerHTML += `
         <div
-            class="bg-white border-2 border-l-4 border-gray-100 p-8 rounded-lg space-y-8 relative border-l-green-600"
+            class="border-1 border-green-400 border-l-4 border-l-green-600 bg-green-50 p-8 rounded-lg space-y-8 relative"
           >
             <button
             onclick="deleteJob(${job.id})"
@@ -164,7 +172,7 @@ function renderRejectedList() {
   rejectedCards.map((job) => {
     rejectedContainer.innerHTML += `
         <div
-            class="bg-white border-2 border-l-4 border-gray-100 p-8 rounded-lg space-y-8 relative border-l-red-600"
+            class="border-1 border-l-4 border-red-400 border-l-red-600 bg-red-50  p-8 rounded-lg space-y-8 relative"
           >
             <button
             onclick="deleteJob(${job.id})"
