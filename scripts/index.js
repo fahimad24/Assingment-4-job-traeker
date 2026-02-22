@@ -147,7 +147,10 @@ function addToRejectedList(id) {
 
 // Delete job from the list
 function deleteJob(id) {
-
+    const confirmed = confirm("Are you sure you want to delete this job?");
+    if (!confirmed) {
+        return;
+    }
     jobCards = jobCards.filter((job) => job.id !== id);
     interviewCards = interviewCards.filter((job) => job.id !== id);
     rejectedCards = rejectedCards.filter((job) => job.id !== id);
